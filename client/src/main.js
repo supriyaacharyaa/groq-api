@@ -110,23 +110,46 @@ form.addEventListener("keyup", (e) => {
 });
 
 // Theme toggle
-const themeToggle = document.getElementById("theme-toggle");
+// Wait for DOM to load
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.getElementById("theme-toggle");
 
-themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("light");
-
-  if(document.body.classList.contains("light")){
+  // Check saved theme in localStorage
+  if(localStorage.getItem("theme") === "light"){
+    document.body.classList.add("light");
     themeToggle.textContent = "🌙";
-  } else {
-    themeToggle.textContent = "🌞";
   }
+
+  themeToggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light")){
+      themeToggle.textContent = "🌙";
+      localStorage.setItem("theme", "light");
+    } else {
+      themeToggle.textContent = "🌞";
+      localStorage.setItem("theme", "dark");
+    }
+  });
 });
 
-// Auto-grow textarea
+
+
 const textarea = document.getElementById("prompt");
+
+textarea.addEventListener("focus", () => {
+  setTimeout(() => {
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }, 300); // wait for keyboard animation
+});
+
 textarea.addEventListener("input", () => {
+  // auto-grow textarea
   textarea.style.height = "auto";
   textarea.style.height = textarea.scrollHeight + "px";
+
+  // keep chat scrolled to bottom
+  chatContainer.scrollTop = chatContainer.scrollHeight;
 });
 
 
