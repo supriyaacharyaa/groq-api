@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT Clone</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body>
+    <!-- Theme toggle -->
+    <div id="theme-toggle">🌞</div>
+
+    <div id="app">
+      <div id="chat_container"></div>
+
+      <form id="chat-form">
+        <textarea name="prompt" id="prompt" placeholder="Ask anything..." rows="1"></textarea>
+        <button type="submit"><img src="assets/send.svg" alt="Send"></button>
+      </form>
+    </div>
+
+    <!-- Loader template -->
+    <template id="loader-template">
+      <div class="loader-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </template>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
